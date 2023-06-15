@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Main Window</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #283149; /* Darker blue background color */
+    }
+    #navSection {
+      background-color: #404b69; /* Darker blue background color for nav section */
+      padding: 10px 0;
+      text-align: center;
+      position: fixed; /* Set the navbar to fixed position */
+      top: 0; /* Position the navbar at the top of the page */
+      width: 100%; /* Full width */
+    }
+    #title {
+      color: #ffffff; /* White text color for the title */
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+    }
+    #formSection {
+      width: 60%;
+      min-width: 300px; /* Set a minimum width */
+      min-height: 20em; /* Set a minimum height */
+      margin-bottom: 20px;
+      background-color: #404b69; /* Darker blue background color for form window */
+      border: 1px solid #2c3e50; /* Slightly darker blue border color */
+      padding: 20px; /* Add padding to the form window */
+      position: relative; /* Position the form window container */
+      display: none; /* Initially hide the form window */
+    }
+    #formWindow {
+      width: 100%;
+      overflow: hidden;
+    }
+    #formWindow iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    #submitButton {
+      text-align: center;
+      display: none; /* Initially hide the submit button */
+    }
+    #showFormButton {
+      background-color: #f4d35e; /* Yellowish background color for show form button */
+      color: #283149; /* Darker blue text color for show form button */
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px; /* Add margin to the show form button */
+    }
+    #showFormButton:hover {
+      background-color: #f9ca24; /* Slightly lighter yellowish background color on hover */
+    }
+    .exitButton {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #f4d35e; /* Yellowish background color for exit button */
+      color: #283149; /* Darker blue text color for exit button */
+      border: none;
+      padding: 6px 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .exitButton:hover {
+      background-color: #f9ca24; /* Slightly lighter yellowish background color on hover */
+    }
+  </style>
+</head>
+<body>
+  <section id="navSection">
+    <h1 id="title">Main Window Title</h1>
+    <div id="showFormSection">
+      <button id="showFormButton" onclick="showForm()">Show Form</button>
+    </div>
+  </section>
+  <div id="formSection">
+    <button class="exitButton" onclick="hideForm()">X</button>
+    <div id="formWindow">
+      <iframe src="form.html" frameborder="0"></iframe>
+    </div>
+  </div>
+  <div id="submitButton">
+    <button onclick="submitForm()">Submit</button>
+  </div>
+
+  <script>
+    function showForm() {
+      var formSection = document.getElementById("formSection");
+      var submitButton = document.getElementById("submitButton");
+      var showFormSection = document.getElementById("showFormSection");
+
+      formSection.style.display = "block";
+      submitButton.style.display = "block";
+      showFormSection.style.display = "none";
+    }
+
+    function hideForm() {
+      var formSection = document.getElementById("formSection");
+      var submitButton = document.getElementById("submitButton");
+      var showFormSection = document.getElementById("showFormSection");
+
+      formSection.style.display = "none";
+      submitButton.style.display = "none";
+      showFormSection.style.display = "block";
+    }
+
+    function submitForm() {
+      var iframe = document.getElementById("formWindow").querySelector("iframe");
+      iframe.contentWindow.submitForm();
+    }
+  </script>
+</body>
+</html>
